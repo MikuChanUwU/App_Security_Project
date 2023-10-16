@@ -1,0 +1,13 @@
+.dashboard-icon {
+    font-size: 10rem;
+}
+
+.dashboard-link {
+    margin-top: 100%
+}
+
+@media only screen and (max-width: 576px) {
+    .dashboard-link {
+        margin-top: 20%
+    }
+}

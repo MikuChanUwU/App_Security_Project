@@ -1,0 +1,21 @@
+.box{
+    background-color: white;
+    padding: 50px;
+    margin-bottom:50px;
+    width:85%;
+  }
+  
+  h2{
+    margin-bottom:40px;
+  }
+  
+  h5{
+    margin-bottom:40px;
+    margin-top:40px;
+  }
+  button{
+    float:right;
+  }
+  textarea{
+    margin-bottom:40px;
+  }

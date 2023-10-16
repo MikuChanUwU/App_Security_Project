@@ -1,0 +1,52 @@
+.why-kelly > i{
+  background: none !important;
+  color: #ffffff !important;
+  border-radius: unset !important;
+  padding: unset !important;
+}
+
+.why-kelly {
+  padding-left: 25px;
+  padding-right: 25px;
+}
+
+.dropdown-filter, .fa-angle-up{
+  display: none;
+}
+
+h5{
+  cursor: pointer;
+}
+
+h5:hover{
+  opacity: 0.9;
+}
+
+hr{
+  margin-top: 0;
+}
+
+h5 i:hover, .filters button:hover{
+  color: #5ca8a8 !important;
+}
+
+.filters button {
+  color: #4b8282;
+  float: right;
+  font-size: 1.1em;
+  padding: 0;
+  margin-left: 20px;
+}
+
+.filters .results-yielded {
+  color: #4b8282;
+  font-size: 1.1em;
+}
+
+.float-right {
+  float: right;
+}
+
+.float-left {
+  float: left;
+}

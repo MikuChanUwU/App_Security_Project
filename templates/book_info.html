@@ -1,0 +1,69 @@
+{% extends "base.html" %}
+
+{% block title %}{{ book.title }}{% endblock %}
+
+{% block stylesheets %}
+
+<link rel="stylesheet" href="/static/css/books.css">
+
+{% endblock %}
+
+{% block content %}
+{% from "includes/_render_breadcrumb.html" import render_breadcrumb %}
+
+{# Render breadcrumbs #}
+{{ render_breadcrumb({
+  "Home": url_for("home"),
+  "All Books": url_for("books", sort_this="all"),
+  book.title: "#"
+}) }}
+<div class="container display-section p-3 mb-4">
+  <div class="row book-info">
+    <div class="col-4">
+      <img src="{{ book.cover_img }}">
+    </div>
+    <div class="col-8">
+      <h2>{{ book.title }}</h2>
+      <p>By: {{ book.author }}</p>
+      <p>Language: <span>{{ book.language }}</span></p>
+      <p>Genre: <span>{{ book.genre }}</span></p>
+
+      <h4>$<span>{{ book.price }}</span></h4>
+
+      <form method="POST" action="{{ url_for('add_to_cart') }}">
+        <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
+        <input type="text" class="d-none" name="book_id" value="{{ book.book_id }}">
+        <input type="number" class="quantity-selector" name="quantity" min="1" value="1" max="{{ book.stock }}">
+        {# If user is not logged in, redirect to login #}
+        {% if g.user is not none %}
+        <input type="submit" class="btn add-cart-button" value="ADD TO CART">
+        {% else %}
+        <button type="button" id="redirectLoginButton" class="btn add-cart-button">ADD TO CART</button>
+        {% endif %}
+      </form>
+
+      <h5>Description</h5>
+      <p>{{ book.description }}</p>
+    </div>
+  </div>
+</div>
+
+{# Customer Reviews Section #}
+<div class="container display-section customer-reviews-container p-4 mb-4">
+  <h2 class="review-header mb-2">Customer Reviews</h2>
+  <div id="ratingsDetails" class="container py-3">
+  {% if g.user %}
+    <div class="row px-3 my-2">
+      <div> {# TODO: review page #}
+        <a href="/book/{{book_id}}/book_review" class="btn defaultbtn">Write Your Own Review</a>
+      </div>
+    </div>
+  {% endif %}
+  </div>
+  <div class="container" id="customerReviews">{# Javascript will fetch API for this #}</div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script src="/static/js/book_info.js"></script>
+{% endblock %}

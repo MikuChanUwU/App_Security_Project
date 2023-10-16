@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+{% block title %}Sign Up Verification{% endblock %}
+
+{% block stylesheets %}
+<link rel="stylesheet" href="/static/css/login.css">
+{% endblock %}
+
+{% block navbar %}
+  {% include 'includes/_login_navbar.html' %}
+{% endblock %}
+
+{% block content %}
+{% from "includes/_login_render_field.html" import render_field %}
+<div class="d-flex justify-content-center align-items-center h-100">
+  <div class="card">
+    <div class="card-header">
+      <h2 class="m-0">Back up codes:</h2>
+      <p>Please record all of these codes down in the event that u lose access to your 2FA</p>
+      <br>
+      <p>These codes will not be appeared again, so please store these codes somewhere safe.</p>
+    </div>
+    <div class="card-body">
+        <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
+        {# Flash login error message #}
+        {% with messages = get_flashed_messages(category_filter=("form-error")) %}
+          {% if messages %}
+            {% for message in messages %}
+              <div class="flash-error alert p-2 mb-4" role="alert">
+                {{ message }}
+              </div>
+            {% endfor %}
+          {% endif %}
+        {% endwith %}
+        <div class="mb-4">
+          {{ code1 }}
+          {{ code2 }}
+          {{ code3 }}
+          {{ code4 }}
+          {{ code5 }}
+          {{ code6 }}
+        </div>
+        <a href="{{ url_for('account') }}">Back to Account</a>
+    </div>
+  </div>
+</div>
+{% endblock %}

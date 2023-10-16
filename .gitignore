@@ -1,0 +1,15 @@
+# Directories
+__pycache__/
+*/__pycache__/
+.venv/
+.vscode/
+.idea/
+
+# LOL
+lol.exe
+database.db
+
+# HTTPS
+mkcert.exe
+cert.pem
+key.pem
